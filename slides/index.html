@@ -1,16 +1,30 @@
-# ES6 and beyond
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ES6 and beyond</title>
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css" id="theme">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+          document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+    </head>
+    <body>
+
+        <div class="reveal">
+            <div class="slides"><section  data-markdown><script type="text/template"># ES6 and beyond
 
 <img src="./images/js-big.png" width="400px" /><br>
 <small>by Peter Cosemans</small>
-
----
-
+</script></section><section ><section data-markdown><script type="text/template">
 # ES5, ES6, ES2016, ES.Next
 
 > What's going on with JavaScript versioning
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Terms of terminology
 
 - ECMAScript
@@ -23,21 +37,15 @@
 
 Check out these [compatibility tables](http://kangax.github.io/compat-table/es6/)
 
-Note:
-- ECMAScript: A language standardized by ECMA International.
+<aside class="notes" data-markdown>- ECMAScript: A language standardized by ECMA International.
 - JavaScript: The commonly used name for implementations of the ECMAScript standard
 - ECMAScript 5 (ES5): The 5th edition of ECMAScript, standardized in 2009
 - ECMAScript 6 (ES6/ES2015): The 6th edition of ECMAScript, standardized in 2015.
-- ECMAScript 2016: The 7th edition of ECMAScript
-
-----
-
+- ECMAScript 2016: The 7th edition of ECMAScript</aside></script></section><section data-markdown><script type="text/template">
 ## TC39
 
 The Ecma TC39 committee is responsible for evolving the ECMAScript programming language and authoring the specification. The committee operates by consensus and has discretion to alter the specification as it sees fit.
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## The TC39 Process
 
 - Stage 0: Initial input
@@ -47,9 +55,7 @@ The Ecma TC39 committee is responsible for evolving the ECMAScript programming l
 - Stage 4: Finished (ready)
 
 [TC39 Github Proposals](https://github.com/tc39/proposals)
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Typescript
 
 <img src="./images/typescript.jpg" width="400px" />
@@ -57,15 +63,11 @@ The Ecma TC39 committee is responsible for evolving the ECMAScript programming l
 Versions: 1.7, 1.8, 2.0, 2.1, ...
 
 See the [RoadMap](https://github.com/Microsoft/TypeScript/wiki/Roadmap)
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 # ES6+ today
 
 > How can I use all these new features on my current platforms?
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## ES6 Support today
 
 #### Edge, Chrome, Firefox and Safari
@@ -80,9 +82,7 @@ See the [RoadMap](https://github.com/Microsoft/TypeScript/wiki/Roadmap)
 
 <small>If you need more (ES Modules, ES7/ES8, Typescript, ...)
 you need to transpile.<small>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Babel - Node
 
     // .babelrc
@@ -109,9 +109,7 @@ For the production build, make sure you transpile to ES5
     babel -d ./build ./server -s --ignore *.test.js"
 
 > This is also possible with TypeScript 2.1+
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Babel - Browser
 
 ```json
@@ -141,9 +139,7 @@ For the production build, make sure you transpile to ES5
         },
     };
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## TypeScript
 
 ```json
@@ -176,9 +172,7 @@ For the production build, make sure you transpile to ES5
         },
     };
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Don't forget the polyfills
 
 For Map, Set, Object.xxx, ...
@@ -207,15 +201,11 @@ For Map, Set, Object.xxx, ...
     import 'core-js/es7/reflect';
     import 'zone.js/dist/zone';
 ```
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 # The Basic Features of ES6
 
 > What you probably already know.
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## The let keyword
 
 ```javascript
@@ -246,9 +236,7 @@ For Map, Set, Object.xxx, ...
     console.log(message)      --> output: ?
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## The const keyword
 
 ```javascript
@@ -272,9 +260,7 @@ So don't use 'var' anymore. By default use 'const' and use 'let' when needed.
 ```
 
 'const' defines a constant Reference, Not a Value
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Default Argument Values
 
 ```javascript
@@ -291,9 +277,7 @@ So don't use 'var' anymore. By default use 'const' and use 'let' when needed.
         return a*b*c;
     };
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Property value shorthand
 
 ```javascript
@@ -321,9 +305,7 @@ vs
         };
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Computed property keys
 
 ```javascript
@@ -346,9 +328,7 @@ vs
         };
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Method definition shorthand
 
 ```javascript
@@ -375,9 +355,7 @@ vs
         };
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Property accessors
 
 
@@ -397,9 +375,7 @@ vs
     let car = getCar('Volvo', 'V70', 30000);
     console.log(car.value);     // OUTPUT: 30000
     car.value = -1;             <- ERROR
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## The arrow function
 
 Simpler syntax
@@ -417,9 +393,7 @@ Simpler syntax
     // version 2
     const arrowGreeting = (message, name) => message + name;
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## The arrow function
 
 This reference
@@ -450,9 +424,7 @@ Easier with arrow function
     service.delayAction(500)    > Output ?
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Import / Export
 
 ```javascript
@@ -478,9 +450,7 @@ Easier with arrow function
     import config, { MAX_LENGTH, Car } from 'service'
 
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## The class
 
 ```javascript
@@ -502,9 +472,7 @@ Easier with arrow function
     }
 ```
 
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Classes don't hoist
 
 ```javascript
@@ -524,9 +492,7 @@ Easier with arrow function
        }
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Don't overuse classes!
 
 ```javascript
@@ -558,9 +524,7 @@ The class don't hold state and no constructor!
     import { trim } from './util'
     trim(' abc    ');
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## String interpollation
 
 Multiline with interpollation
@@ -584,15 +548,11 @@ You get the opportunity to pre process the template string literals plus the val
 Inside the interpolation (${ and }) is treated as a JavaScript expression
 
 > No more string concatenation!
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 # More advanced ES6
 
 > What you should know.
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Rest operator
 
 ```javascript
@@ -613,9 +573,7 @@ Inside the interpolation (${ and }) is treated as a JavaScript expression
         return values.join(separator);
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Spread operator
 
 ```javascript
@@ -649,9 +607,7 @@ Clone an array
 ```javascript
     const newArray = [...oldArray];
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Promises
 
 Replaces Q, Bluebird, ... One rules them all
@@ -683,9 +639,7 @@ Replaces Q, Bluebird, ... One rules them all
         console.log(values); // [3, 1337, "foo"]
     });
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Destructuring
 
 ```javascript
@@ -726,9 +680,7 @@ Replaces Q, Bluebird, ... One rules them all
             console.log(p1Result); // [3, "foo"]
         });
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Object.is
 
 ```javascript
@@ -750,9 +702,7 @@ Replaces Q, Bluebird, ... One rules them all
     Object.is(NaN, NaN) // true
 ```
 
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Object.assign
 
 ```javascript
@@ -782,9 +732,7 @@ Replaces Q, Bluebird, ... One rules them all
         ···
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Object.keys
 
 Retrieves all string keys of all enumerable own (non-inherited) properties.
@@ -804,9 +752,7 @@ Alternative
         ...
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Generators
 
 The basics
@@ -836,9 +782,7 @@ The basics
         console.log(i)
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Generators
 
 More practical example
@@ -869,9 +813,7 @@ More practical example
         console.log(user);
     }
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Still using underscore?
 
 ```javascript
@@ -898,9 +840,7 @@ More practical example
     _.template("hello <%= name %>")         `hello ${name}`
     _.deepClone(source)                     X
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Symbols
 
 Properties of an object can be either a string (as in ES5)
@@ -927,9 +867,7 @@ Can be used as private variable
     var x = new MyClass('hello')
     console.log(JSON.stringify(x))    > Output: {}
 ```
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## String interpollation - Tagged templates
 
 Tagged templates
@@ -950,15 +888,11 @@ Tagged templates
 ```
 
 You get the opportunity to pre process the template string literals plus the values.
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 # ES.next features
 
 > This is good to know
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Class Fields
 
 ```javascript
@@ -971,10 +905,7 @@ You get the opportunity to pre process the template string literals plus the val
 
 <small>Stage 2<br>Babel plugins:[transform-class-properties] </small>
 
-Note: Already supported in TypeScript 1.x
-
-----
-
+<aside class="notes" data-markdown>Already supported in TypeScript 1.x</aside></script></section><section data-markdown><script type="text/template">
 ## Object spread operator
 
 ```javascript
@@ -991,10 +922,7 @@ Note: Already supported in TypeScript 1.x
 
 > Great for immutable objects!
 
-Note: It is supported by TypeScript 2.0+
-
-----
-
+<aside class="notes" data-markdown>It is supported by TypeScript 2.0+</aside></script></section><section data-markdown><script type="text/template">
 ## Async / Await
 
 ```javascript
@@ -1023,10 +951,7 @@ Note: It is supported by TypeScript 2.0+
 
 > Makes unit tests much more easier
 
-Note: It is supported by TypeScript 1.7+
-
-----
-
+<aside class="notes" data-markdown>It is supported by TypeScript 1.7+</aside></script></section><section data-markdown><script type="text/template">
 ## Decorators
 
 ```javascript
@@ -1054,9 +979,7 @@ Note: It is supported by TypeScript 1.7+
 <small>Standard available in TypeScript 1.5+</small>
 
 > Angular2 in ES6: use ["es2015", "angular2"]
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Trailing Function Commas
 
 ```javascript
@@ -1084,35 +1007,85 @@ Note: It is supported by TypeScript 1.7+
 <small>Stage 3<br>Babel plugins:[syntax-trailing-function-commas] </small>
 
 > Cleaner diff in your git repo
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 # Want to be a better ES6 developer
 
 > Start using a linter: ESLint or TSLint
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Setup
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## IDE Support
 
 - Visual Studio Code
 - WebStorm
 - Atom
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 # What's next
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ## Help and Information
 
 - [ES.Next News](http://esnextnews.com/)
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 # Start using the power of Javascript
+</script></section></section></div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            function extend() {
+              var target = {};
+              for (var i = 0; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) {
+                  if (source.hasOwnProperty(key)) {
+                    target[key] = source[key];
+                  }
+                }
+              }
+              return target;
+            }
+
+            // Optional libraries used to extend on reveal.js
+            var deps = [
+              { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+              { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+              { src: 'plugin/math/math.js', async: true }
+            ];
+
+            // default options to init reveal.js
+            var defaultOptions = {
+              controls: true,
+              progress: true,
+              history: true,
+              center: true,
+              transition: 'default',
+              dependencies: deps
+            };
+
+            // options from URL query string
+            var queryOptions = Reveal.getQueryHash() || {};
+
+            var options = {
+  "controls": true,
+  "progress": true,
+  "history": true,
+  "slideNumber": true,
+  "width": 960,
+  "height": 700,
+  "margin": 0.1,
+  "minScale": 0.2,
+  "maxScale": 2
+};
+            options = extend(defaultOptions, options, queryOptions);
+            Reveal.initialize(options);
+        </script>
+        
+          <script src="/scripts/mjr-es6"></script>
+    </body>
+</html>
+
