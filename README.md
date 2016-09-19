@@ -2,7 +2,7 @@
 
 ## Online View
 
-[https://cdn.rawgit.com/mjrio/mjr-es6/master/slides/index.html#/](https://cdn.rawgit.com/mjrio/mjr-es6/master/slides/index.html#/)
+[https://rawgit.com/mjrio/mjr-es6/master/slides/index.html#/](https://cdn.rawgit.com/mjrio/mjr-es6/master/slides/index.html#/)
 
 ## Edit and run
 
