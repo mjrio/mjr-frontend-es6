@@ -41,7 +41,7 @@
 ### Our sample in ES6
 
     // ES6 code
-    function getCar(make, model, value) {
+    const getCar = (make, model, value) => {
         return {
             make,
             model,

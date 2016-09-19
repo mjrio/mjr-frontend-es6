@@ -3,6 +3,13 @@
 <img src="./images/js-big.png" width="400px" /><br>
 <small>by Peter Cosemans</small>
 
+Note:
+
+### About
+- Overview & practical use ES6+ features.
+- It's not a training about TypeScript (at least not about the typing features of TypeScript)
+- Targetted at ES5 and beginning ES6 developers that want to improve their javascript skills
+
 ---
 
 # ES5, ES6, ES2016, ES.Next
@@ -85,6 +92,7 @@ you need to transpile.<small>
 
 ## Babel - Node
 
+```javascript
     // .babelrc
     {
         "presets": ["es2017"],
@@ -100,15 +108,19 @@ you need to transpile.<small>
 
     // server.js (fully ES6/ES7)
     import app from './express';
-
+```
+```javascript
     // startup
     node index.js
+```
 
 For the production build, make sure you transpile to ES5
 
     babel -d ./build ./server -s --ignore *.test.js"
 
-> This is also possible with TypeScript 2.1+
+Note:
+
+> This is also possible with TypeScript 2.0+
 
 ----
 
@@ -150,10 +162,8 @@ For the production build, make sure you transpile to ES5
     // tsconfig.json
     {
         "compilerOptions": {
-            "declaration": false,
             "emitDecoratorMetadata": true,
             "experimentalDecorators": true,
-            "module": "es6",
             "moduleResolution": "node",
             "target": "es5",
             ...
@@ -207,6 +217,81 @@ For Map, Set, Object.xxx, ...
     import 'core-js/es7/reflect';
     import 'zone.js/dist/zone';
 ```
+
+---
+
+# A good start
+
+> Don't work without a linter.
+
+----
+
+## ESLint
+
+```
+    # install
+    npm install eslint
+    npm install babel-eslint
+    npm install eslint-config-airbnb-base
+    npm install eslint-plugin-import
+```
+
+```json
+    {
+        "root": true,
+        "extends": [
+            "airbnb-base",
+            "plugin:import/errors"
+        ],
+        "globals": { "myGobal": true },
+        "parser": "babel-eslint",
+        "env": { "node": true, "browser": true, "mocha": true },
+        "rules": {
+            "indent": [2, 4],
+            "no-console": 0
+            ...
+        }
+    }
+```
+
+----
+
+## TSLint
+
+
+```
+    # config
+    npm install tslint -D
+    npm install codelyzer -D
+    npm install typescript -D
+```
+
+```json
+    // config
+    {
+        "rulesDirectory": [
+            "node_modules/codelyzer"
+        ],
+        "rules": {
+            ...
+        }
+    }
+```
+
+----
+
+## IDE/Editor Support
+
+
+Any good JS editor support's linting
+
+- Visual Studio Code
+- WebStorm
+- Atom
+- Sublime (sort of)
+
+
+<img src="./images/linting.png" width="400px" /><br>
 
 ---
 
@@ -275,25 +360,6 @@ So don't use 'var' anymore. By default use 'const' and use 'let' when needed.
 
 ----
 
-## Default Argument Values
-
-```javascript
-    var myFunction = function(a, b, c){
-        a = a || 10;
-        b = b || 5;
-        c = c || 8;
-        return a*b*c;
-    };
-```
-
-```javascript
-    var myFunction = function(a=10, b=5, c=8){
-        return a*b*c;
-    };
-```
-
-----
-
 ## Property value shorthand
 
 ```javascript
@@ -318,31 +384,6 @@ vs
             make,
             model,
             value
-        };
-    }
-```
-
-----
-
-## Computed property keys
-
-```javascript
-    // ES3/ES5
-    function getCar(make, model, value) {
-        var car = {};
-        car['make' + make] = true;
-        return car;
-    }
-```
-
-vs
-
-```javascript
-    // ES6
-    // Computed values now work with object literals
-    function getCar(make, model, value) {
-        return {
-            ['make' + make]: true
         };
     }
 ```
@@ -378,28 +419,6 @@ vs
 
 ----
 
-## Property accessors
-
-
-    function getCar(make, model, value) {
-        return {
-            _value: value,
-            get value() {
-                return this._value;
-            },
-            set value(value) {
-                if (value < 0)
-                    throw new Error('invalid value');
-                this._value = value;
-            }
-    }
-
-    let car = getCar('Volvo', 'V70', 30000);
-    console.log(car.value);     // OUTPUT: 30000
-    car.value = -1;             <- ERROR
-
-----
-
 ## The arrow function
 
 Simpler syntax
@@ -430,13 +449,14 @@ This reference
       delayLog(timeout) {
         setTimeout(function() {
           console.log(this.foo)
-        }, timeout)
+        }.bind(this), timeout)
       }
     }
-    service.delayAction(500)    > Output ?
+    service.delayAction(500)
 ```
 
 Easier with arrow function
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```javascript
     const service = {
@@ -447,7 +467,6 @@ Easier with arrow function
         }, timeout)
       }
     }
-    service.delayAction(500)    > Output ?
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
 
@@ -489,19 +508,27 @@ Easier with arrow function
         constructor(make, model, value) {
             this.make = make;
             this.model = model;
-            this._value = value;
+            this.value = value;
         }
 
-        get value() {
-            return this._value;
-        },
-
-        depreciate: function() {
+        depreciate() {
             this.value -= 2500;
         }
     }
 ```
 
+```javascript
+    // ES5 constructor function
+    function Car(make, model, value) {
+        this.make = make;
+        this.model = model;
+        this.value = value;
+    }
+
+    Car.prototype.depreciate = function() {
+        this.value -= 2500;
+    }
+```
 
 ----
 
@@ -525,6 +552,28 @@ Easier with arrow function
     }
 ```
 
+
+----
+
+## The TypeScript class
+
+```javascript
+    // TypeScript
+    class Car {
+        model: String
+
+        constructor(private make: String, private value: Number, model: String) {
+            this.model = model;
+        }
+
+        depreciate() {
+            this.value -= 2500;
+        }
+    }
+```
+
+<small>Class properties will be supported in ES8</small>
+
 ----
 
 ## Don't overuse classes!
@@ -532,10 +581,8 @@ Easier with arrow function
 ```javascript
     export class Utils {
         trim(text) {
-            ...
         }
         parseDate(dateString) {
-            ...
         }
     }
 
@@ -544,7 +591,7 @@ Easier with arrow function
     utils.trim(' abc    ');
 ```
 
-The class don't hold state and no constructor!
+The class don't hold state, better to use functions
 
 ```javascript
     // better
@@ -574,18 +621,130 @@ Multiline with interpollation
     `;
 ```
 
-You get the opportunity to pre process the template string literals plus the values.
-
 ```javascript
     const message = `1 and 1 make ${1 + 1}`;
     console.log(message);
 ```
 
-Inside the interpolation (${ and }) is treated as a JavaScript expression
+Inside (${ and }) is treated as a JavaScript expression
 
 > No more string concatenation!
 
+----
+
+## Default Argument Values
+
+```javascript
+    var myFunction = function(a, b, c){
+        a = a || 10;
+        b = b || 5;
+        c = c || 8;
+        return a*b*c;
+    };
+```
+
+```javascript
+    var myFunction = function(a=10, b=5, c=8){
+        return a*b*c;
+    };
+```
+
+```javascript
+    const INITIAL_STATE = { ... }
+    var myFunction = function(state = INITIAL_STATE, action){
+        ...
+    };
+```
+
+----
+
+## Computed property keys
+
+```javascript
+    // ES3/ES5
+    function getCar(make, model, value) {
+        var car = {};
+        car['make' + make] = true;
+        return car;
+    }
+```
+
+vs
+
+```javascript
+    // ES6
+    // Computed values now work with object literals
+    function getCar(make, model, value) {
+        return {
+            ['make' + make]: true
+        };
+    }
+```
+
+----
+
+## Property accessors
+
+```javascript
+    function getCar(make, model, value) {
+        return {
+            _value: value,
+            get value() {
+                return this._value;
+            },
+            set value(value) {
+                if (value < 0)
+                    throw new Error('invalid value');
+                this._value = value;
+            }
+    }
+
+    let car = getCar('Volvo', 'V70', 30000);
+    console.log(car.value);     // OUTPUT: 30000
+    car.value = -1;             <- ERROR
+```
+
+<small>A less known ECMAScript 5 feature</small>
+
+----
+
+## Property accessors in class
+
+```javascript
+    class Car {
+        constructor(make, value) {
+            this.make = make;
+            this._value = value;
+        }
+
+        get value() {
+            return this._value;
+        }
+
+        set value(value) {
+            if (value < 0)
+                throw new Error('invalid value');
+            this._value = value;
+        }
+    }
+```
+
+----
+
+## Computed property names
+
+```javascript
+    var expr = "foo";
+
+    var obj = {
+        get [expr]() { return "bar"; }
+    };
+
+    console.log(obj.foo); // "bar"
+```
+
 ---
+
 
 # More advanced ES6
 
@@ -644,10 +803,29 @@ Modify an immutable array
     }
 ```
 
+----
+
+<!-- .slide: data-transition="concave" -->
+## Spread operator
+
 Clone an array
 
 ```javascript
+    // old way
+    const newArray = oldArray.splice(0);
+```
+
+```javascript
+    //es6 way
     const newArray = [...oldArray];
+```
+
+Combine to arrays
+
+```javascript
+    var x = [1, 2];
+    var y = [3, 4];
+    x.push(...y);  // x is [1, 2, 3, 4]
 ```
 
 ----
@@ -712,10 +890,13 @@ Replaces Q, Bluebird, ... One rules them all
     }
 ```
 
+----
+
+## Destructuring
 
 ```javascript
-    // array destructering
-    [a, b, ...rest] = [1, 2, 3, 4, 5];
+    // Array destructuring uses an iterator to get to the elements of a source
+    let [x, ...y] = 'abc';   // x='a'; y=['b', 'c']
 ```
 
 ```javascript
@@ -787,7 +968,7 @@ Replaces Q, Bluebird, ... One rules them all
 
 ### Object.keys
 
-Retrieves all string keys of all enumerable own (non-inherited) properties.
+Retrieves all string keys of all properties.
 
 ```javascript
     const x = {
@@ -874,6 +1055,8 @@ More practical example
 
 ## Still using underscore?
 
+Euhhhh, way not?
+
 ```javascript
     // Underscore                           ES5/6
     // ----------------------               ---------------------
@@ -889,6 +1072,7 @@ More practical example
     _.indexOf(array, value)                 array.indexOf(value)
     _.keys(object)                          Object.keys(object)
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```javascript
     _.assign({}, source, {a:false})         Object.assign({},source,{a:false})
@@ -898,6 +1082,7 @@ More practical example
     _.template("hello <%= name %>")         `hello ${name}`
     _.deepClone(source)                     X
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ----
 
@@ -930,13 +1115,13 @@ Can be used as private variable
 
 ----
 
-## String interpollation - Tagged templates
+## String interpollation
 
 Tagged templates
 
 ```javascript
     const id = 1;
-    const query = grahql `
+    const query = graphql `
         query {
             user(id: ${id})
         }
@@ -948,7 +1133,6 @@ Tagged templates
       console.log('raw', literals.raw[0]);
     }
 ```
-
 You get the opportunity to pre process the template string literals plus the values.
 
 ---
@@ -969,9 +1153,9 @@ You get the opportunity to pre process the template string literals plus the val
     }
 ```
 
-<small>Stage 2<br>Babel plugins:[transform-class-properties] </small>
+<small>Stage 2<br>Babel plugins:[transform-class-properties], TS 1.5+ </small>
 
-Note: Already supported in TypeScript 1.x
+> Yes more typescript like
 
 ----
 
@@ -987,11 +1171,9 @@ Note: Already supported in TypeScript 1.x
     }
 ```
 
-<small>Stage 2<br>Babel plugins:[transform-object-rest-spread] </small>
+<small>Stage 2<br>Babel plugins:[transform-object-rest-spread], TS 2.0+ </small>
 
 > Great for immutable objects!
-
-Note: It is supported by TypeScript 2.0+
 
 ----
 
@@ -1019,7 +1201,7 @@ Note: It is supported by TypeScript 2.0+
     }
 ```
 
-<small>Stage 3<br>Babel plugins:[transform-async-to-generator] </small>
+<small>Stage 3<br>Babel plugins:[transform-async-to-generator], TS 1.7+ </small>
 
 > Makes unit tests much more easier
 
@@ -1035,8 +1217,7 @@ Note: It is supported by TypeScript 1.7+
     class MyClass { }
 
     function annotation(target) {
-       // Add a property on target
-       target.annotated = true;
+       target.annotated = true;  // Add a property on target
     }
 ```
 
@@ -1050,8 +1231,7 @@ Note: It is supported by TypeScript 1.7+
     }
 ```
 
-<small>Stage 1<br>Babel plugins:[transform-decorators-legacy] </small><br>
-<small>Standard available in TypeScript 1.5+</small>
+<small>Stage 1<br>Babel plugins:[transform-decorators-legacy], TS 1.5+ </small><br>
 
 > Angular2 in ES6: use ["es2015", "angular2"]
 
@@ -1081,38 +1261,10 @@ Note: It is supported by TypeScript 1.7+
     )
 ```
 
-<small>Stage 3<br>Babel plugins:[syntax-trailing-function-commas] </small>
+<small>Stage 3<br>Babel plugins:[syntax-trailing-function-commas], TS 2.0 </small>
 
 > Cleaner diff in your git repo
 
 ---
 
-# Want to be a better ES6 developer
-
-> Start using a linter: ESLint or TSLint
-
-----
-
-## Setup
-
-----
-
-## IDE Support
-
-- Visual Studio Code
-- WebStorm
-- Atom
-
----
-
-# What's next
-
-----
-
-## Help and Information
-
-- [ES.Next News](http://esnextnews.com/)
-
-----
-
-# Start using the power of Javascript
+# May the Javascript Force be with you
