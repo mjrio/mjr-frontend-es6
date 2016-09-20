@@ -12,6 +12,12 @@ Note:
 
 ---
 
+# mjr
+
+http://github.com/mjrio/mjr-es6
+
+---
+
 # Learn Javascript
 
 <img src="./images/js-books.jpg" width="400px" /><br>
@@ -199,6 +205,8 @@ Note:
     };
 ```
 
+The TypeScript version defined which features you can use.
+
 ----
 
 ## Don't forget the polyfills
@@ -265,6 +273,8 @@ For Map, Set, Object.xxx, ...
         }
     }
 ```
+
+<small>This setup follow the airbnb styleguide: https://github.com/zalmoxisus/javascript</small>
 
 ----
 
@@ -358,7 +368,7 @@ Any good JS editor support's linting
     message = 'hello'           <-- ERROR
 ```
 
-So don't use 'var' anymore. By default use 'const' and use 'let' when needed.
+So don't use 'var' anymore.
 
 > const is not immutable!
 
@@ -907,12 +917,12 @@ Replaces Q, Bluebird, ... One rules them all
 ## Destructuring
 
 ```js
-    // Array destructuring uses an iterator to get to the elements of a source
+    // Array destructuring: uses an iterator to get to the elements of a source
     let [x, ...y] = 'abc';   // x='a'; y=['b', 'c']
 ```
 
 ```js
-    // destructor result of multiple promises
+    // Array destructuring: result of multiple promises results
     Promise.all([p1, p2])
         .then(([p1Result, p2Result]) => {
             console.log(p1Result); // [3, "foo"]
