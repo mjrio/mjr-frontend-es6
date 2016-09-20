@@ -18,9 +18,23 @@
 
     Note: speaker notes FTW!
 
+## Small font:
+
+    <small>This is a side note</small>
+
 ## Images
 
     ![](https://myImage.jpg)
     ![](./images/myImage.png)
 
     <img src="https://myImage.jpg" style="width: 400px;"/>
+
+## Reveal-md Startup
+
+    // other theme
+    > reveal-md slides.md --title 'ES6 and beyond' --theme Moon
+    (Black - White - League - Sky - Beige - Simple - Serif - Blood - Night - Moon - Solarized)
+
+    // other hightlight theme (http://jmblog.github.io/color-themes-for-highlightjs/)
+    > reveal-md slides.md --title 'ES6 and beyond' --highlightTheme github
+

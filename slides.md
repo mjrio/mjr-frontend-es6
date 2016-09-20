@@ -12,6 +12,18 @@ Note:
 
 ---
 
+# Learn Javascript
+
+<img src="./images/js-books.jpg" width="400px" /><br>
+
+Make sure you know the core principles of JavaScript
+
+Note:
+
+- Kyle Simpson makes sure you do know JavaScript
+
+---
+
 # ES5, ES6, ES2016, ES.Next
 
 > What's going on with JavaScript versioning
@@ -92,7 +104,7 @@ you need to transpile.<small>
 
 ## Babel - Node
 
-```javascript
+```js
     // .babelrc
     {
         "presets": ["es2017"],
@@ -109,7 +121,7 @@ you need to transpile.<small>
     // server.js (fully ES6/ES7)
     import app from './express';
 ```
-```javascript
+```js
     // startup
     node index.js
 ```
@@ -137,7 +149,7 @@ Note:
     }
 ```
 
-```javascript
+```js
     // webpack.config.js
     module.exports = {
         entry: './main.js',
@@ -171,7 +183,7 @@ Note:
     }
 ```
 
-```javascript
+```js
     // webpack.config.js
     module.exports = {
         entry: './main.js',
@@ -194,14 +206,14 @@ Note:
 For Map, Set, Object.xxx, ...
 <br><small>If you target older browsers (IE, PhantomJS, ...)</small>
 
-```javascript
+```js
     // index.js
     import 'core-js';
     // or babel/polyfill
     // or es6-shim
 ```
 
-```javascript
+```js
     // polyfills.ts (from angular2)
     import 'core-js/es6/symbol';
     import 'core-js/es6/object';
@@ -303,7 +315,7 @@ Any good JS editor support's linting
 
 ## The let keyword
 
-```javascript
+```js
     // ES5 - block scoping
     var message = 'hi';
     {
@@ -312,7 +324,7 @@ Any good JS editor support's linting
     console.log(message)      --> output: ?
 ```
 
-```javascript
+```js
     // ES5 - function scoping
     var message = 'hi';
     function greet() {
@@ -322,7 +334,7 @@ Any good JS editor support's linting
 ```
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
-```javascript
+```js
     // ES6 - block scoping with let
     let message = 'hi';
     {
@@ -336,7 +348,7 @@ Any good JS editor support's linting
 
 ## The const keyword
 
-```javascript
+```js
     // ES5
     var message = 'hi';
     return message;
@@ -350,7 +362,7 @@ So don't use 'var' anymore. By default use 'const' and use 'let' when needed.
 
 > const is not immutable!
 
-```javascript
+```js
     const names = [];
     names.push( "Jordan" );     <-- No Error
     console.log( names );
@@ -362,7 +374,7 @@ So don't use 'var' anymore. By default use 'const' and use 'let' when needed.
 
 ## Property value shorthand
 
-```javascript
+```js
     // ES3/ES5
     function getCar(make, model, value) {
         return {
@@ -375,7 +387,7 @@ So don't use 'var' anymore. By default use 'const' and use 'let' when needed.
 
 vs
 
-```javascript
+```js
     // ES6
     // With property value shorthand syntax, you can omit the property
     // value if key matches variable name.
@@ -392,7 +404,7 @@ vs
 
 ## Method definition shorthand
 
-```javascript
+```js
     // ES5
     function getCar(make, model, value) {
         return {
@@ -405,7 +417,7 @@ vs
 
 vs
 
-```javascript
+```js
     // ES6
     // Method definition shorthand syntax omits `function` keyword & colon
     function getCar(make, model, value) {
@@ -423,7 +435,7 @@ vs
 
 Simpler syntax
 
-```javascript
+```js
     var createGreeting = function(message, name) {
         return message + name;
     }
@@ -443,7 +455,7 @@ Simpler syntax
 
 This reference
 
-```javascript
+```js
     const service = {
       foo: 'peter',
       delayLog(timeout) {
@@ -458,7 +470,7 @@ This reference
 Easier with arrow function
 <!-- .element: class="fragment" data-fragment-index="2" -->
 
-```javascript
+```js
     const service = {
       foo: 'peter',
       delayAction(timeout) {
@@ -474,7 +486,7 @@ Easier with arrow function
 
 ## Import / Export
 
-```javascript
+```js
     // service.js
     export const MAX_LENGTH = 1000;
     export class Car() {
@@ -486,7 +498,7 @@ Easier with arrow function
     export default config;
 ```
 
-```javascript
+```js
     import config from 'service';
     import { MAX_LENGTH, Car } from 'service'
 
@@ -502,7 +514,7 @@ Easier with arrow function
 
 ## The class
 
-```javascript
+```js
     // ES6
     class Car {
         constructor(make, model, value) {
@@ -517,7 +529,7 @@ Easier with arrow function
     }
 ```
 
-```javascript
+```js
     // ES5 constructor function
     function Car(make, model, value) {
         this.make = make;
@@ -534,7 +546,7 @@ Easier with arrow function
 
 ## Classes don't hoist
 
-```javascript
+```js
     // this works
     var foo = new Foo(1, 2);
     function Foo(x, y) {
@@ -557,7 +569,7 @@ Easier with arrow function
 
 ## The TypeScript class
 
-```javascript
+```js
     // TypeScript
     class Car {
         model: String
@@ -578,7 +590,7 @@ Easier with arrow function
 
 ## Don't overuse classes!
 
-```javascript
+```js
     export class Utils {
         trim(text) {
         }
@@ -593,7 +605,7 @@ Easier with arrow function
 
 The class don't hold state, better to use functions
 
-```javascript
+```js
     // better
     export const trim = (text) => {
         ...
@@ -612,7 +624,7 @@ The class don't hold state, better to use functions
 
 Multiline with interpollation
 
-```javascript
+```js
     const message = 'world'
     const template = `
         <div>
@@ -621,7 +633,7 @@ Multiline with interpollation
     `;
 ```
 
-```javascript
+```js
     const message = `1 and 1 make ${1 + 1}`;
     console.log(message);
 ```
@@ -634,7 +646,7 @@ Inside (${ and }) is treated as a JavaScript expression
 
 ## Default Argument Values
 
-```javascript
+```js
     var myFunction = function(a, b, c){
         a = a || 10;
         b = b || 5;
@@ -643,13 +655,13 @@ Inside (${ and }) is treated as a JavaScript expression
     };
 ```
 
-```javascript
+```js
     var myFunction = function(a=10, b=5, c=8){
         return a*b*c;
     };
 ```
 
-```javascript
+```js
     const INITIAL_STATE = { ... }
     var myFunction = function(state = INITIAL_STATE, action){
         ...
@@ -660,7 +672,7 @@ Inside (${ and }) is treated as a JavaScript expression
 
 ## Computed property keys
 
-```javascript
+```js
     // ES3/ES5
     function getCar(make, model, value) {
         var car = {};
@@ -671,7 +683,7 @@ Inside (${ and }) is treated as a JavaScript expression
 
 vs
 
-```javascript
+```js
     // ES6
     // Computed values now work with object literals
     function getCar(make, model, value) {
@@ -685,7 +697,7 @@ vs
 
 ## Property accessors
 
-```javascript
+```js
     function getCar(make, model, value) {
         return {
             _value: value,
@@ -710,7 +722,7 @@ vs
 
 ## Property accessors in class
 
-```javascript
+```js
     class Car {
         constructor(make, value) {
             this.make = make;
@@ -733,7 +745,7 @@ vs
 
 ## Computed property names
 
-```javascript
+```js
     var expr = "foo";
 
     var obj = {
@@ -754,7 +766,7 @@ vs
 
 ## Rest operator
 
-```javascript
+```js
     // ES5: remember this one
     function join() {
         var arg = Array.prototype.slice.call(arguments);
@@ -766,7 +778,7 @@ vs
 
 ```
 
-```javascript
+```js
     // ES6: easy
     function join(separator, ...values) {
         return values.join(separator);
@@ -777,7 +789,7 @@ vs
 
 ## Spread operator
 
-```javascript
+```js
     function volume(width, length, height) {
         return width * length * height;
     };
@@ -787,7 +799,7 @@ vs
 
 Modify an immutable array
 
-```javascript
+```js
     // mutable change
     function addElement(array, element) {
         array.push(element);
@@ -810,19 +822,19 @@ Modify an immutable array
 
 Clone an array
 
-```javascript
+```js
     // old way
     const newArray = oldArray.splice(0);
 ```
 
-```javascript
+```js
     //es6 way
     const newArray = [...oldArray];
 ```
 
-Combine to arrays
+Combine two arrays
 
-```javascript
+```js
     var x = [1, 2];
     var y = [3, 4];
     x.push(...y);  // x is [1, 2, 3, 4]
@@ -834,7 +846,7 @@ Combine to arrays
 
 Replaces Q, Bluebird, ... One rules them all
 
-```javascript
+```js
     function timeout(duration = 0) {
         return new Promise((resolve, reject) => {
             setTimeout(resolve, duration);
@@ -842,7 +854,7 @@ Replaces Q, Bluebird, ... One rules them all
     }
 ```
 
-```javascript
+```js
     var p = timeout(1000)
         .then(() => {
             return timeout(2000);
@@ -855,7 +867,7 @@ Replaces Q, Bluebird, ... One rules them all
         })
 ```
 
-```javascript
+```js
     // wait for multiple promises
     Promise.all([p1, p2, p3]).then(values => {
         console.log(values); // [3, 1337, "foo"]
@@ -866,7 +878,7 @@ Replaces Q, Bluebird, ... One rules them all
 
 ## Destructuring
 
-```javascript
+```js
     var myConfig = {
         url: 'www.google.com/api',
         data: 'some value',
@@ -882,7 +894,7 @@ Replaces Q, Bluebird, ... One rules them all
     }
 ```
 
-```javascript
+```js
     // ES6
     function makeAjaxRequest(config){
         var { url, methodType, data } = config;
@@ -894,12 +906,12 @@ Replaces Q, Bluebird, ... One rules them all
 
 ## Destructuring
 
-```javascript
+```js
     // Array destructuring uses an iterator to get to the elements of a source
     let [x, ...y] = 'abc';   // x='a'; y=['b', 'c']
 ```
 
-```javascript
+```js
     // destructor result of multiple promises
     Promise.all([p1, p2])
         .then(([p1Result, p2Result]) => {
@@ -912,7 +924,7 @@ Replaces Q, Bluebird, ... One rules them all
 
 ### Object.is
 
-```javascript
+```js
     // we all know
     “0” == 0  // true
     “0” === 0 // false (better to use this)
@@ -924,7 +936,7 @@ Replaces Q, Bluebird, ... One rules them all
     var result = isNan(NaN) // workaround
 ```
 
-```javascript
+```js
     // ES6 - this is always correct
     Object.is(0 ,”0”) // false
     Object.is(0 ,0) // true
@@ -936,14 +948,14 @@ Replaces Q, Bluebird, ... One rules them all
 
 ### Object.assign
 
-```javascript
+```js
     // combine object
     const obj = { foo: 123 };
     Object.assign(obj, { bar: true });
     console.log(JSON.stringify(obj));  // OUTPUT: {"foo":123,"bar":true}
 ```
 
-```javascript
+```js
     // adding properties to this
     class Point {
        constructor(x, y) {
@@ -952,7 +964,7 @@ Replaces Q, Bluebird, ... One rules them all
     }
 ```
 
-```javascript
+```js
    // Providing default values for object properties
     const DEFAULTS = {
         logLevel: 0,
@@ -970,7 +982,7 @@ Replaces Q, Bluebird, ... One rules them all
 
 Retrieves all string keys of all properties.
 
-```javascript
+```js
     const x = {
         id: 1234,
         name: 'abc',
@@ -980,7 +992,7 @@ Retrieves all string keys of all properties.
 
 Alternative
 
-```javascript
+```js
     for (const key in obj) {
         ...
     }
@@ -992,7 +1004,7 @@ Alternative
 
 The basics
 
-```javascript
+```js
     function *foo() {
         yield 1;
         yield 2;
@@ -1002,7 +1014,7 @@ The basics
     }
 ```
 
-```javascript
+```js
     // get an iterator
     var it = foo();
 
@@ -1024,7 +1036,7 @@ The basics
 
 More practical example
 
-```javascript
+```js
     var activeUsers = _.filter(users, function(user) {
         return user.isActive
     });
@@ -1033,7 +1045,7 @@ More practical example
     });
 ```
 
-```javascript
+```js
     function *map(items, transform) {
       for (item of items)
         yield transform(item);
@@ -1045,7 +1057,7 @@ More practical example
     }
 ```
 
-```javascript
+```js
     for (const user of activeusers) {
         console.log(user);
     }
@@ -1057,7 +1069,7 @@ More practical example
 
 Euhhhh, way not?
 
-```javascript
+```js
     // Underscore                           ES5/6
     // ----------------------               ---------------------
     _.each(array, iteratee)                 array.forEach(iteratee)
@@ -1074,7 +1086,7 @@ Euhhhh, way not?
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
 
-```javascript
+```js
     _.assign({}, source, {a:false})         Object.assign({},source,{a:false})
     _.extendOwn({}, object)                 { ...object }
     _.isArray(object)                       Array.isArray(object)
@@ -1091,7 +1103,7 @@ Euhhhh, way not?
 Properties of an object can be either a string (as in ES5)
 or symbol (new in ES6)
 
-```javascript
+```js
     var key = Symbol("key");
     const myObject = {
         [key]: 'abc'
@@ -1100,7 +1112,7 @@ or symbol (new in ES6)
 
 Can be used as private variable
 
-```javascript
+```js
     var key = Symbol("key");
 
     class MyClass {
@@ -1119,7 +1131,7 @@ Can be used as private variable
 
 Tagged templates
 
-```javascript
+```js
     const id = 1;
     const query = graphql `
         query {
@@ -1145,7 +1157,7 @@ You get the opportunity to pre process the template string literals plus the val
 
 ### Class Fields
 
-```javascript
+```js
     class MyClass {
         myProp = 42;
         static myStaticProp = 21;
@@ -1161,7 +1173,7 @@ You get the opportunity to pre process the template string literals plus the val
 
 ## Object spread operator
 
-```javascript
+```js
     const myObject = { id: 12345, name: 'abc' }
 
     // my immutable object change
@@ -1179,14 +1191,14 @@ You get the opportunity to pre process the template string literals plus the val
 
 ## Async / Await
 
-```javascript
+```js
     // an async function
     const fetchSomething = () => new Promise((resolve) => {
         setTimeout(() => resolve('future value'), 500);
     });
 ```
 
-```javascript
+```js
     // ES5
     const promiseFunc = () => new Promise((resolve) => {
         fetchSomething().then(result => {
@@ -1211,7 +1223,7 @@ Note: It is supported by TypeScript 1.7+
 
 ## Decorators
 
-```javascript
+```js
     // A simple decorator
     @annotation
     class MyClass { }
@@ -1221,7 +1233,7 @@ Note: It is supported by TypeScript 1.7+
     }
 ```
 
-```javascript
+```js
     // A decorator with argument
     @displayName('Auto')
     class Car { }
@@ -1239,7 +1251,7 @@ Note: It is supported by TypeScript 1.7+
 
 ## Trailing Function Commas
 
-```javascript
+```js
 
     // Trailing commas are ignored in object literals and arrays
     const myObject = {
@@ -1253,7 +1265,7 @@ Note: It is supported by TypeScript 1.7+
     }
 ```
 
-```javascript
+```js
     // ES8 - makes it possible on function arguments
     function doThis(
         commandName,
@@ -1267,4 +1279,13 @@ Note: It is supported by TypeScript 1.7+
 
 ---
 
-# May the Javascript Force be with you
+## Resources
+
+- [You-Dont-Know-JS Book series](https://github.com/getify/You-Dont-Know-JS)
+- [Frontendmasters - Kyle Simpson](https://frontendmasters.com/courses/)
+- [JavaScript Weekly](http://javascriptweekly.com/)
+- [TOP 10 JAVASCRIPT TRAPS FOR A C# DEVELOPER](http://prasadhonrao.com/top-10-javascript-traps-for-a-csharp-developer/)
+
+---
+
+# May the Jjs Force be with you
