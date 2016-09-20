@@ -295,21 +295,21 @@ Any good JS editor support's linting
 ## The let keyword
 
 ```js
-    // ES5 - block scoping
-    var message = 'hi';
-    {
-        var message = 'bye';
-    }
-    console.log(message)      --> output: ?
-```
-
-```js
     // ES5 - function scoping
     var message = 'hi';
     function greet() {
         var message = 'bye';
     }
     greet();                  --> Output ?
+```
+
+```js
+    // ES5 - block scoping
+    var message = 'hi';
+    {
+        var message = 'bye';
+    }
+    console.log(message)      --> output: ?
 ```
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
@@ -335,9 +335,9 @@ Any good JS editor support's linting
     message = 'hello'           <-- ERROR
 ```
 
-So don't use 'var' anymore.
-
 > const is not immutable!
+
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```js
     const names = [];
@@ -345,7 +345,11 @@ So don't use 'var' anymore.
     console.log( names );
 ```
 
+<!-- .element: class="fragment" data-fragment-index="3" -->
+
 'const' defines a constant Reference, Not a Value
+
+<!-- .element: class="fragment" data-fragment-index="3" -->
 </script></section><section data-markdown><script type="text/template">
 ## Property value shorthand
 
@@ -450,32 +454,6 @@ Easier with arrow function
     }
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
-</script></section><section data-markdown><script type="text/template">
-## Import / Export
-
-```js
-    // service.js
-    export const MAX_LENGTH = 1000;
-    export class Car() {
-        ...
-    }
-    const config = {
-        ...
-    }
-    export default config;
-```
-
-```js
-    import config from 'service';
-    import { MAX_LENGTH, Car } from 'service'
-
-    import * as lib from 'service';
-    console.log(lib.MAX_LENGTH)
-    const car = new lib.Car();
-
-    import config, { MAX_LENGTH, Car } from 'service'
-
-```
 </script></section><section data-markdown><script type="text/template">
 ## The class
 
@@ -599,6 +577,34 @@ Inside (${ and }) is treated as a JavaScript expression
 
 > No more string concatenation!
 </script></section><section data-markdown><script type="text/template">
+## Import / Export
+
+```js
+    // service.js
+    export const MAX_LENGTH = 1000;
+    export class Car() {
+        ...
+    }
+    const config = {
+        ...
+    }
+    export default config;
+```
+
+```js
+    import config from 'service';
+    import { MAX_LENGTH, Car } from 'service'
+
+    import * as lib from 'service';
+    console.log(lib.MAX_LENGTH)
+    const car = new lib.Car();
+
+    import config, { MAX_LENGTH, Car } from 'service'
+
+```
+
+> Bye, bye IIFE ( Immediately-Invoked Function Expression )
+</script></section><section data-markdown><script type="text/template">
 ## Default Argument Values
 
 ```js
@@ -632,6 +638,9 @@ Inside (${ and }) is treated as a JavaScript expression
         car['make' + make] = true;
         return car;
     }
+
+    var o = getCar('Bmw', '5', 50000);
+    o.makeBmw === true;
 ```
 
 vs
@@ -690,7 +699,7 @@ vs
     }
 ```
 </script></section><section data-markdown><script type="text/template">
-## Computed property names
+## Computed property accessor names
 
 ```js
     var expr = "foo";
@@ -811,7 +820,7 @@ Replaces Q, Bluebird, ... One rules them all
     });
 ```
 </script></section><section data-markdown><script type="text/template">
-## Destructuring
+## Object Destructuring
 
 ```js
     var myConfig = {
@@ -837,21 +846,31 @@ Replaces Q, Bluebird, ... One rules them all
     }
 ```
 </script></section><section data-markdown><script type="text/template">
-## Destructuring
+## Array Destructuring
 
 ```js
     // Array destructuring: uses an iterator to get to the elements of a source
     let [x, ...y] = 'abc';   // x='a'; y=['b', 'c']
 ```
 
+Combines desctructering with spread operator
+
 ```js
-    // Array destructuring: result of multiple promises results
-    Promise.all([p1, p2])
-        .then(([p1Result, p2Result]) => {
-            console.log(p1Result); // [3, "foo"]
-            console.log(p1Result); // [3, "foo"]
+    // ES5 - Result of multiple promises
+    Promise.all([promiseGetUsers, promiseGetCustomers])
+        .then((result) => {
+            var users = result[0];
+            var customers = result[1];
+            console.log(users, customers);
+        });
+
+    // ES6: Array destructuring result
+    Promise.all([promiseGetUsers, promiseGetCustomers])
+        .then(([users, customers]) => {
+            console.log(users, customers);
         });
 ```
+Less lines to write, less confusion
 </script></section><section data-markdown><script type="text/template">
 ### Object.is
 
@@ -1062,6 +1081,7 @@ Tagged templates
       console.log('raw', literals.raw[0]);
     }
 ```
+
 You get the opportunity to pre process the template string literals plus the values.
 </script></section></section><section ><section data-markdown><script type="text/template">
 # ES.next features
@@ -1188,7 +1208,7 @@ You get the opportunity to pre process the template string literals plus the val
 - [JavaScript Weekly](http://javascriptweekly.com/)
 - [TOP 10 JAVASCRIPT TRAPS FOR A C# DEVELOPER](http://prasadhonrao.com/top-10-javascript-traps-for-a-csharp-developer/)
 </script></section><section  data-markdown><script type="text/template">
-# May the Jjs Force be with you
+# May the JS-Force be with you
 </script></section></div>
         </div>
 
@@ -1240,7 +1260,7 @@ You get the opportunity to pre process the template string literals plus the val
   "width": 960,
   "height": 800,
   "margin": 0.1,
-  "minScale": 1,
+  "minScale": 0.5,
   "maxScale": 1,
   "transition": "fade",
   "transition-speed": "slow"

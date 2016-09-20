@@ -326,21 +326,21 @@ Any good JS editor support's linting
 ## The let keyword
 
 ```js
-    // ES5 - block scoping
-    var message = 'hi';
-    {
-        var message = 'bye';
-    }
-    console.log(message)      --> output: ?
-```
-
-```js
     // ES5 - function scoping
     var message = 'hi';
     function greet() {
         var message = 'bye';
     }
     greet();                  --> Output ?
+```
+
+```js
+    // ES5 - block scoping
+    var message = 'hi';
+    {
+        var message = 'bye';
+    }
+    console.log(message)      --> output: ?
 ```
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
@@ -368,9 +368,9 @@ Any good JS editor support's linting
     message = 'hello'           <-- ERROR
 ```
 
-So don't use 'var' anymore.
-
 > const is not immutable!
+
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ```js
     const names = [];
@@ -378,7 +378,11 @@ So don't use 'var' anymore.
     console.log( names );
 ```
 
+<!-- .element: class="fragment" data-fragment-index="3" -->
+
 'const' defines a constant Reference, Not a Value
+
+<!-- .element: class="fragment" data-fragment-index="3" -->
 
 ----
 
@@ -491,34 +495,6 @@ Easier with arrow function
     }
 ```
 <!-- .element: class="fragment" data-fragment-index="2" -->
-
-----
-
-## Import / Export
-
-```js
-    // service.js
-    export const MAX_LENGTH = 1000;
-    export class Car() {
-        ...
-    }
-    const config = {
-        ...
-    }
-    export default config;
-```
-
-```js
-    import config from 'service';
-    import { MAX_LENGTH, Car } from 'service'
-
-    import * as lib from 'service';
-    console.log(lib.MAX_LENGTH)
-    const car = new lib.Car();
-
-    import config, { MAX_LENGTH, Car } from 'service'
-
-```
 
 ----
 
@@ -654,6 +630,36 @@ Inside (${ and }) is treated as a JavaScript expression
 
 ----
 
+## Import / Export
+
+```js
+    // service.js
+    export const MAX_LENGTH = 1000;
+    export class Car() {
+        ...
+    }
+    const config = {
+        ...
+    }
+    export default config;
+```
+
+```js
+    import config from 'service';
+    import { MAX_LENGTH, Car } from 'service'
+
+    import * as lib from 'service';
+    console.log(lib.MAX_LENGTH)
+    const car = new lib.Car();
+
+    import config, { MAX_LENGTH, Car } from 'service'
+
+```
+
+> Bye, bye IIFE ( Immediately-Invoked Function Expression )
+
+----
+
 ## Default Argument Values
 
 ```js
@@ -689,6 +695,9 @@ Inside (${ and }) is treated as a JavaScript expression
         car['make' + make] = true;
         return car;
     }
+
+    var o = getCar('Bmw', '5', 50000);
+    o.makeBmw === true;
 ```
 
 vs
@@ -753,7 +762,7 @@ vs
 
 ----
 
-## Computed property names
+## Computed property accessor names
 
 ```js
     var expr = "foo";
@@ -886,7 +895,7 @@ Replaces Q, Bluebird, ... One rules them all
 
 ----
 
-## Destructuring
+## Object Destructuring
 
 ```js
     var myConfig = {
@@ -914,21 +923,31 @@ Replaces Q, Bluebird, ... One rules them all
 
 ----
 
-## Destructuring
+## Array Destructuring
 
 ```js
     // Array destructuring: uses an iterator to get to the elements of a source
     let [x, ...y] = 'abc';   // x='a'; y=['b', 'c']
 ```
 
+Combines desctructering with spread operator
+
 ```js
-    // Array destructuring: result of multiple promises results
-    Promise.all([p1, p2])
-        .then(([p1Result, p2Result]) => {
-            console.log(p1Result); // [3, "foo"]
-            console.log(p1Result); // [3, "foo"]
+    // ES5 - Result of multiple promises
+    Promise.all([promiseGetUsers, promiseGetCustomers])
+        .then((result) => {
+            var users = result[0];
+            var customers = result[1];
+            console.log(users, customers);
+        });
+
+    // ES6: Array destructuring result
+    Promise.all([promiseGetUsers, promiseGetCustomers])
+        .then(([users, customers]) => {
+            console.log(users, customers);
         });
 ```
+Less lines to write, less confusion
 
 ----
 
@@ -1155,6 +1174,7 @@ Tagged templates
       console.log('raw', literals.raw[0]);
     }
 ```
+
 You get the opportunity to pre process the template string literals plus the values.
 
 ---
@@ -1298,4 +1318,4 @@ Note: It is supported by TypeScript 1.7+
 
 ---
 
-# May the Jjs Force be with you
+# May the JS-Force be with you

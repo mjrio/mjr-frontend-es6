@@ -6,7 +6,7 @@
     "width": 960,
     "height": 800,
     "margin": 0.1,
-    "minScale": 1.0,
+    "minScale": 0.5,
     "maxScale": 1.0,
     "transition": "fade",
     "transition-speed":"slow"
