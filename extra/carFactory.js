@@ -23,8 +23,8 @@ var carFactory = (function() {
                     console.log('name', that.make);
                 }, timeout);
             },
-            sayHello: function() {
-                return 'Hello ' + make + ' ' + model + ': $' + value;
+            sayWroom: function() {
+                return 'Wroom ' + this.make + ' ' + this.model;
             }
         };
         car['make' + make] = true;

@@ -498,6 +498,38 @@ Easier with arrow function
 
 ----
 
+## Import / Export
+
+```js
+    // service.js
+    export const MAX_LENGTH = 1000;
+    export class Car() {
+        ...
+    }
+    const config = {
+        ...
+    }
+    export default config;
+```
+
+```js
+    import config from 'service';
+    import { MAX_LENGTH, Car } from 'service'
+
+    import * as lib from 'service';
+    console.log(lib.MAX_LENGTH)
+    const car = new lib.Car();
+
+    import config, { MAX_LENGTH, Car } from 'service'
+
+```
+
+Bye, bye IIFE ( Immediately-Invoked Function Expression )
+
+ALWAYS user npm, NEVER use Bower again.
+
+----
+
 ## The class
 
 ```js
@@ -627,36 +659,6 @@ Multiline with interpollation
 Inside (${ and }) is treated as a JavaScript expression
 
 > No more string concatenation!
-
-----
-
-## Import / Export
-
-```js
-    // service.js
-    export const MAX_LENGTH = 1000;
-    export class Car() {
-        ...
-    }
-    const config = {
-        ...
-    }
-    export default config;
-```
-
-```js
-    import config from 'service';
-    import { MAX_LENGTH, Car } from 'service'
-
-    import * as lib from 'service';
-    console.log(lib.MAX_LENGTH)
-    const car = new lib.Car();
-
-    import config, { MAX_LENGTH, Car } from 'service'
-
-```
-
-> Bye, bye IIFE ( Immediately-Invoked Function Expression )
 
 ----
 
